@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will You Be My Valentine? 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ffd1dc,#ff9ecb);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  text-align:center;
+}
+
+/* Card */
+.card{
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  max-width:500px;
+  position:relative;
+  z-index:2;
+}
+
+h1{
+  margin-bottom:10px;
+}
+
+.buttons{
+  margin-top:25px;
+  position:relative;
+}
+
+button{
+  padding:10px 25px;
+  font-size:16px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  margin:10px;
+  transition:0.3s;
+}
+
+#yes{
+  background:#ff4d6d;
+  color:white;
+}
+
+#no{
+  background:#eee;
+  position:absolute;
+}
+
+/* Celebration screen */
+#celebration{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+}
+
+#celebration img{
+  width:250px;
+  margin:20px 0;
+}
+
+/* Heart rain */
+.heart{
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="proposal">
+  <h1>💖 Will you be my Valentine? 💖</h1>
+  <p>Choose wisely… 😜</p>
+
+  <img src="kiss.gif" width="200">
+
+  <div class="buttons">
+    <button id="yes">YES</button>
+    <button id="no">NO</button>
+  </div>
+</div>
+
+<div class="card" id="celebration">
+  <h1>💘 YAYYYY!!! 💘</h1>
+  <p>Best decision ever 😍</p>
+  <img src="couple.jpeg" width="400">
+  <h3>I Love You Bangarammmm❤️</h3>
+  <P>Happy Valentine’s Day, my love 💖
+Today is not just about roses or chocolates 🌹🍫, it’s about celebrating the beautiful bond we share. You are the reason my world feels brighter ✨ and my heart feels fuller ❤️. Every moment with you is my favorite memory, and every future dream has you in it 💍. Thank you for loving me the way you do — softly, strongly, and endlessly. I’m so lucky to call you mine 💕.</p>
+  <h4>My Pellammm Garu ❤️</h4>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const proposal = document.getElementById("proposal");
+const celebration = document.getElementById("celebration");
+
+const funnyTexts = [
+  "Think again 😜",
+  "Are you sure? 🤔",
+  "Wrong choice 😂",
+  "Try clicking YES 😏",
+  "Not allowed 😆"
+];
+
+let index = 0;
+
+/* Move NO button */
+noBtn.addEventListener("mouseover", () => {
+  const x = Math.random() * 300 - 150;
+  const y = Math.random() * 150 - 75;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+  noBtn.innerText = funnyTexts[index];
+  index = (index + 1) % funnyTexts.length;
+});
+
+/* YES click */
+yesBtn.addEventListener("click", () => {
+  proposal.style.display = "none";
+  celebration.style.display = "flex";
+});
+
+/* Heart rain */
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerText="💖";
+  heart.style.left=Math.random()*100+"vw";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},400);
+</script>
+
+</body>
+</html>
